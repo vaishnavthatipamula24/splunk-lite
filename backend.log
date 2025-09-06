@@ -1,0 +1,114 @@
+[WARNING] Unable to find the root directory. Create a .mvn directory in the root directory or add the root="true" attribute on the root project's model to identify it.
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for 'com.example:splunk-lite-sqlite-fts:jar:0.0.1-SNAPSHOT'
+[WARNING] Ignored POM import for: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.10.2@compile as already imported org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.11.0@compile. Add the conflicting managed dependency directly to the dependencyManagement section of the POM. @ org.springframework.boot:spring-boot-dependencies:3.3.2
+[WARNING] Ignored POM import for: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.7.0@compile as already imported org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.11.0@compile. Add the conflicting managed dependency directly to the dependencyManagement section of the POM. @ org.springframework.boot:spring-boot-dependencies:3.3.2
+[WARNING] Ignored POM import for: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.10.2@compile as already imported org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.11.0@compile. Add the conflicting managed dependency directly to the dependencyManagement section of the POM. @ org.springframework.boot:spring-boot-dependencies:3.3.2
+[WARNING] Ignored POM import for: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.7.0@compile as already imported org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.11.0@compile. Add the conflicting managed dependency directly to the dependencyManagement section of the POM. @ org.springframework.boot:spring-boot-dependencies:3.3.2
+[WARNING] 'build.plugins.plugin.version' for org.springframework.boot:spring-boot-maven-plugin  is missing. @ line 49, column 7
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] -----------------< com.example:splunk-lite-sqlite-fts >-----------------
+[INFO] Building splunk-lite-sqlite-fts 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.0-M2:run (default-cli) > test-compile @ splunk-lite-sqlite-fts >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ splunk-lite-sqlite-fts ---
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] skip non existing resourceDirectory C:\Users\vaish\OneDrive\Desktop\splunk-lite-sqlite-fts\src\main\resources-filtered
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ splunk-lite-sqlite-fts ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ splunk-lite-sqlite-fts ---
+[INFO] skip non existing resourceDirectory C:\Users\vaish\OneDrive\Desktop\splunk-lite-sqlite-fts\src\test\resources
+[INFO] skip non existing resourceDirectory C:\Users\vaish\OneDrive\Desktop\splunk-lite-sqlite-fts\src\test\resources-filtered
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ splunk-lite-sqlite-fts ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.0-M2:run (default-cli) < test-compile @ splunk-lite-sqlite-fts <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.0-M2:run (default-cli) @ splunk-lite-sqlite-fts ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.2)
+
+2025-09-02T22:25:15.712-04:00  INFO 27288 --- [           main] com.example.splunklite.App               : Starting App using Java 21.0.8 with PID 27288 (C:\Users\vaish\OneDrive\Desktop\splunk-lite-sqlite-fts\target\classes started by vaish in C:\Users\vaish\OneDrive\Desktop\splunk-lite-sqlite-fts)
+2025-09-02T22:25:15.723-04:00  INFO 27288 --- [           main] com.example.splunklite.App               : No active profile set, falling back to 1 default profile: "default"
+2025-09-02T22:25:17.478-04:00  INFO 27288 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-02T22:25:17.494-04:00  INFO 27288 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-02T22:25:17.494-04:00  INFO 27288 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2025-09-02T22:25:17.578-04:00  INFO 27288 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-02T22:25:17.579-04:00  INFO 27288 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1708 ms
+2025-09-02T22:25:17.737-04:00  INFO 27288 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-02T22:25:18.874-04:00  INFO 27288 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@22d9bc14
+2025-09-02T22:25:18.879-04:00  INFO 27288 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-02T22:25:20.688-04:00  INFO 27288 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-02T22:25:20.703-04:00  INFO 27288 --- [           main] com.example.splunklite.App               : Started App in 5.978 seconds (process running for 6.801)
+SchemaFixer: ALTER TABLE executed (ts -> BIGINT)
+SchemaFixer: SHOW CREATE TABLE logs -> CREATE TABLE `logs` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `ts` bigint NOT NULL,
+  `source` text,
+  `env` text,
+  `level` text,
+  `message` text,
+  `extra` text,
+  PRIMARY KEY (`id`),
+  KEY `idx_logs_ts` (`ts`),
+  FULLTEXT KEY `ftx_logs_message_source_env_level` (`message`,`source`,`env`,`level`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+SchemaFixer: ALTER TABLE executed (id -> BIGINT AUTO_INCREMENT)
+SchemaFixer: ADD PRIMARY KEY skipped/failed: StatementCallback; bad SQL grammar [ALTER TABLE logs ADD PRIMARY KEY (id)]
+Application started successfully.
+2025-09-02T22:25:26.549-04:00  INFO 27288 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-02T22:25:26.554-04:00  INFO 27288 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-02T22:25:26.559-04:00  INFO 27288 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-09-02T22:52:58.347-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m8s772ms571µs900ns).
+2025-09-02T23:02:43.281-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m14s848ms391µs300ns).
+2025-09-02T23:29:04.550-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m21s28ms999µs300ns).
+2025-09-03T09:18:13.235-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9h46m8s551ms241µs900ns).
+2025-09-03T09:38:13.764-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m59s174ms502µs700ns).
+2025-09-03T13:56:25.270-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=31m7s702ms684µs500ns).
+2025-09-03T16:40:08.726-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m10s209ms629µs900ns).
+2025-09-03T18:36:04.394-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50m54s341ms587µs).
+2025-09-03T21:52:17.774-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h13m43s314ms53µs200ns).
+2025-09-03T22:14:23.553-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m5s14ms966µs100ns).
+2025-09-03T22:20:31.238-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m36s234ms145µs).
+2025-09-03T22:40:22.895-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51s275ms77µs700ns).
+2025-09-04T09:19:48.563-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6h2m39s374ms602µs).
+2025-09-04T13:26:06.067-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=30m43s261ms501µs100ns).
+2025-09-04T16:06:54.342-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m15s370ms653µs900ns).
+2025-09-04T18:22:40.252-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h4m33s205ms494µs100ns).
+2025-09-04T18:46:59.602-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m48s791ms191µs).
+2025-09-04T18:56:34.613-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m4s950ms954µs500ns).
+2025-09-04T21:55:26.116-04:00  WARN 27288 --- [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h58m51s503ms776µs900ns).
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2 d 00:10 h
+[INFO] Finished at: 2025-09-04T22:35:56-04:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.0-M2:run (default-cli) on project splunk-lite-sqlite-fts: Process terminated with exit code: -1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the '-e' switch
+[ERROR] Re-run Maven using the '-X' switch to enable verbose output
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

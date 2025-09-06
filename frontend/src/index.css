@@ -1,0 +1,11 @@
+body { font-family: Arial, sans-serif; margin: 0; background:#f6f8fa; }
+.app header { background:#222; color:#fff; padding:10px 16px; display:flex; align-items:center; justify-content:space-between;}
+nav button { margin-left:8px; padding:6px 10px; cursor:pointer;}
+main { padding:16px; }
+.card { background:#fff; padding:12px; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,0.1); margin-bottom:12px;}
+.field { margin-bottom:8px;}
+.field label { display:block; font-weight:600; margin-bottom:4px;}
+input[type="text"], textarea, select { width:100%; padding:8px; box-sizing:border-box;}
+.btn { padding:8px 12px; cursor:pointer; }
+.list-item { padding:8px 0; border-bottom:1px solid #eee;}
+.small { font-size:0.85rem; color:#555;}
