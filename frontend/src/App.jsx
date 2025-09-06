@@ -5,6 +5,7 @@ import AlertsPage from './pages/AlertsPage';
 import IndexPage from './pages/IndexPage';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
+import UploadPage from './pages/UploadPage';
 import { me } from './api/auth';
 
 export default function App(){
@@ -71,6 +72,7 @@ export default function App(){
             <button onClick={()=>setRoute('logs')}>Ingest Logs</button>
             <button onClick={()=>setRoute('search')}>Search</button>
             <button onClick={()=>setRoute('alerts')}>Alerts</button>
+            <button onClick={()=>setRoute('upload')}>Upload Log File</button>
           </div>
         </aside>
 
@@ -79,6 +81,7 @@ export default function App(){
           {route === 'logs' && <LogsPage/>}
           {route === 'search' && <SearchPage/>}
           {route === 'alerts' && <AlertsPage/>}
+          {route === 'upload' && <UploadPage/>}
         </main>
       </div>
     </div>

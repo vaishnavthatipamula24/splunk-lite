@@ -26,14 +26,104 @@ curl -X POST http://localhost:8080/api/search -H 'Content-Type: application/json
 
 # Create an alert (runs every 60s)
 curl -X POST http://localhost:8080/api/alerts -H 'Content-Type: application/json' -d '{
-  "name":"5xx spike",
-  "query":{"from":"now-5m","to":"now","query":"level:ERROR AND http:502","size":100},
-  "threshold":{"operator":">=","value":1},
-  "notify":{"type":"webhook","url":"http://webhook.site/replace-me"}
-}'
-```
+  ```markdown
+  # Splunk‑Lite — Logs demo (Spring Boot backend + React frontend)
 
-## Notes
-- Database file: `data/logs.db`
-- Full-text via FTS5 (`logs_fts`) with triggers to sync from `logs`.
-- For performance: WAL mode and reasonable PRAGMAs.
+  Small Splunk-like app for ingesting, searching and alerting on logs. This repository contains two pieces:
+
+  - Backend: Spring Boot (Java) application exposing /api endpoints and persisting logs to a MySQL (or local) datasource.
+  - Frontend: React app (in `frontend/`) providing UI for ingest, search, alerts and file upload.
+
+  ## Prerequisites
+  - Java 17+ / JDK 21
+  - Maven
+  - Node.js (16+) and npm
+  - A running MySQL instance (or adjust `src/main/resources/application.properties` to use your DB)
+
+  ---
+
+  ## Backend — build & run
+
+  From the repository root:
+
+  Development (run from sources):
+  ```powershell
+  mvn -DskipTests spring-boot:run
+  ```
+
+  Build a jar and run it:
+  ```powershell
+  mvn -DskipTests clean package
+  java -jar target/splunk-lite-sqlite-fts-0.0.1-SNAPSHOT.jar
+  ```
+
+  Notes:
+  - The backend listens on port 8080 by default. If that port is in use change `server.port` in `application.properties`.
+  - Important files: `src/main/resources/schema.sql` (creates `logs` table), `src/main/java/com/example/splunklite/api/UploadController.java` (file upload), `svc/Indexer.java` (persists logs), `svc/Searcher.java` (search endpoint).
+
+  ---
+
+  ## Frontend — build & run
+
+  Change into the frontend directory and install dependencies, then start the dev server:
+  ```powershell
+  cd frontend
+  npm install
+  npm start
+  ```
+
+  - The React dev server runs on port 3000 by default and proxies API calls to the backend (see `package.json` proxy). If you run frontend and backend locally, start the backend first.
+
+  To build a production bundle:
+  ```powershell
+  cd frontend
+  npm run build
+  ```
+  The static build will be created in `frontend/build`.
+
+  ---
+
+  ## Run both (development)
+
+  1. Start the backend (repo root): `mvn -DskipTests spring-boot:run`
+  2. Start the frontend (separate terminal): `cd frontend; npm start`
+  3. Open http://localhost:3000 in your browser.
+
+  This setup uses the CRA dev server proxy so API calls from the UI are forwarded to the backend.
+
+  ---
+
+  ## Useful API examples
+
+  - Ingest a single log (JSON):
+  ```powershell
+  curl -X POST http://localhost:8080/api/logs -H "Content-Type: application/json" -d '{"source":"orders-api","env":"dev","level":"ERROR","message":"Failed to charge card","ts":1692814210000}'
+  ```
+
+  - Search logs (wide time window):
+  ```powershell
+  curl -X POST http://localhost:8080/api/search -H "Content-Type: application/json" -d '{"from":"1970-01-01T00:00:00Z","to":"now","size":50}'
+  ```
+
+  - Upload a file of logs (each line JSON or CSV/TSV):
+  ```powershell
+  curl -F file=@mylogs.txt http://localhost:8080/api/upload
+  ```
+
+  The upload endpoint returns JSON with `{ count: <n>, errors: [...] }` on success.
+
+  ---
+
+  ## Troubleshooting
+
+  - If the React dev server shows a `Proxy error` when uploading, ensure the backend is running on port 8080 and reachable (try `http://localhost:8080/actuator/health` or `curl http://localhost:8080/api/search`).
+  - If the app cannot connect to the database, verify `application.properties` datasource values and that the user has privileges to create the schema (the app runs `schema.sql` on startup).
+
+  ---
+
+  ## Notes
+  - Database table `logs` schema lives in `src/main/resources/schema.sql`.
+  - Uploaded logs are parsed line-by-line: JSON preferred; fallback to CSV/TSV `source,env,level,message,ts` (ts optional, epoch millis).
+
+  ``` 
+

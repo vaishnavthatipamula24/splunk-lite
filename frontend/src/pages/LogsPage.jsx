@@ -67,12 +67,12 @@ export default function LogsPage(){
             <label>extra (JSON) </label>
             <textarea rows="2" value={form.extra} onChange={e=>setForm({...form, extra:e.target.value})}/>
           </div>
-          <button className="btn" type="submit">Send</button>
+          <button className="btn" type="submit">Done</button>
         </form>
       </div>
 
       <div className="card">
-        <h2>Recent Logs</h2>
+        <h2>Ingested Logs</h2>
         {loading ? <div className="small">Loading...</div> : (
           logs.length === 0 ? <div className="small">No logs</div> :
           <div className="table-wrapper">
