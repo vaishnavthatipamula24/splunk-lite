@@ -47,14 +47,33 @@ export default function SearchPage(){
         {loading && <div className="small">Searching...</div>}
         {!loading && res && (
           res.hits && res.hits.length > 0 ? (
-            res.hits.map((hit, i) => (
-              <div key={i} className="list-item">
-                <div><strong>{hit.source?.source ?? hit.source?.index ?? hit.index}</strong> <span className="small">[{hit.source?.level}]</span></div>
-                <div className="small">{hit.source?.ts ? new Date(Number(hit.source.ts)).toLocaleString() : ''}</div>
-                <div>{hit.source?.message}</div>
-                <div className="small">{hit.source?.extra ? JSON.stringify(hit.source.extra) : ''}</div>
-              </div>
-            ))
+            <div className="table-wrapper">
+              <table className="logs-table">
+                <thead>
+                  <tr>
+                    <th style={{width:180}}>Time</th>
+                    <th style={{width:160}}>Source</th>
+                    <th style={{width:80}}>Level</th>
+                    <th>Message</th>
+                    <th style={{width:180}}>Extra</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {res.hits.map((hit, i) => {
+                    const h = hit.source ?? hit;
+                    return (
+                      <tr key={i} className="logs-row">
+                        <td className="small">{h.ts ? new Date(Number(h.ts)).toLocaleString() : ''}</td>
+                        <td><strong>{h.source ?? h.index}</strong></td>
+                        <td className="small">{h.level ?? ''}</td>
+                        <td className="log-message">{h.message}</td>
+                        <td className="small">{h.extra ? JSON.stringify(h.extra) : ''}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           ) : <div className="small">No results</div>
         )}
       </div>

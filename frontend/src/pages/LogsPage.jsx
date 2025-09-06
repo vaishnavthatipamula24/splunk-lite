@@ -41,7 +41,7 @@ export default function LogsPage(){
   return (
     <div>
       <div className="card">
-        <h2>Ingest Log</h2>
+  <h2>Ingest Logs</h2>
         <form onSubmit={onSubmit}>
           <div className="field">
             <label>ts (epoch millis, optional)</label>
@@ -75,15 +75,29 @@ export default function LogsPage(){
         <h2>Recent Logs</h2>
         {loading ? <div className="small">Loading...</div> : (
           logs.length === 0 ? <div className="small">No logs</div> :
-          <div>
-            {logs.map((h, idx) => (
-              <div key={idx} className="list-item">
-                <div><strong>{h.source ?? h.index}</strong> <span className="small">[{h.level ?? ''}]</span></div>
-                <div className="small">{h.ts ? new Date(Number(h.ts)).toLocaleString() : ''}</div>
-                <div>{h.message}</div>
-                <div className="small">{h.extra ? JSON.stringify(h.extra) : ''}</div>
-              </div>
-            ))}
+          <div className="table-wrapper">
+            <table className="logs-table">
+              <thead>
+                <tr>
+                  <th style={{width:180}}>Time</th>
+                  <th style={{width:160}}>Source</th>
+                  <th style={{width:80}}>Level</th>
+                  <th>Message</th>
+                  <th style={{width:180}}>Extra</th>
+                </tr>
+              </thead>
+              <tbody>
+                {logs.map((h, idx) => (
+                  <tr key={idx} className="logs-row">
+                    <td className="small">{h.ts ? new Date(Number(h.ts)).toLocaleString() : ''}</td>
+                    <td><strong>{h.source ?? h.index}</strong></td>
+                    <td className="small">{h.level ?? ''}</td>
+                    <td className="log-message">{h.message}</td>
+                    <td className="small">{h.extra ? JSON.stringify(h.extra) : ''}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
