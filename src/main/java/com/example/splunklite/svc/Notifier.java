@@ -6,8 +6,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Map;
 
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.example.splunklite.model.AlertDefinition;
@@ -17,14 +15,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Notifier {
   private final HttpClient client = HttpClient.newHttpClient();
   private final ObjectMapper om = new ObjectMapper();
-  private final JavaMailSender mailSender;
+  private final EmailService emailService;
 
-  public Notifier(JavaMailSender mailSender){ this.mailSender = mailSender; }
+  public Notifier(EmailService emailService){ this.emailService = emailService; }
 
   public void send(AlertDefinition def, long hits) {
     try {
       if (def.getNotify()==null) return;
-      // if notify has url -> webhook
+
+      // webhook if present
       if (def.getNotify().getUrl()!=null){
         String json = om.writeValueAsString(Map.of("alert", def.getName(), "hits", hits));
         HttpRequest req = HttpRequest.newBuilder()
@@ -34,14 +33,15 @@ public class Notifier {
           .build();
         client.send(req, HttpResponse.BodyHandlers.discarding());
       }
-      // if notify has comma-separated emails -> send mail
+
+      // mail: use EmailService
       if (def.getNotify().getTo()!=null && !def.getNotify().getTo().isBlank()){
         String[] to = def.getNotify().getTo().split(",");
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(trimArray(to));
-        msg.setSubject("Alert: " + def.getName());
-        msg.setText("Alert fired: " + def.getName() + " - hits=" + hits);
-        mailSender.send(msg);
+        String subject = "Alert: " + def.getName();
+        String text = "Alert fired: " + def.getName() + " - hits=" + hits;
+        for (String t : trimArray(to)){
+          emailService.sendEmail(t, subject, text);
+        }
       }
     } catch (Exception ignored) { }
   }

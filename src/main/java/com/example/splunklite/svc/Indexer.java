@@ -12,9 +12,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Indexer {
   private final JdbcTemplate jdbc;
   private final ObjectMapper om = new ObjectMapper();
+  private final SplunkService splunk;
 
-  public Indexer(JdbcTemplate jdbc){ 
+  public Indexer(JdbcTemplate jdbc, SplunkService splunk){ 
     this.jdbc = jdbc; 
+    this.splunk = splunk;
   }
 
   public void put(LogEvent e) throws Exception {
@@ -24,5 +26,7 @@ public class Indexer {
         "INSERT INTO logs(ts, source, env, level, message, extra) VALUES(?,?,?,?,?,?)",
         ts, e.getSource(), e.getEnv(), e.getLevel(), e.getMessage(), extra
       );
+      // forward to Splunk HEC if configured (best-effort, async)
+      try { splunk.sendEvent(e); } catch (Exception ignored) {}
   }
 }

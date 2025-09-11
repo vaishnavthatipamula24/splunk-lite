@@ -8,6 +8,33 @@ mvn -DskipTests clean package
 java -jar target/splunk-lite-sqlite-fts-0.0.1-SNAPSHOT.jar
 ```
 
+## Email testing (alerts)
+
+To enable email notifications for alerts, configure SMTP properties in `src/main/resources/application.properties`.
+
+Example (Gmail app password / real SMTP):
+
+```
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=your-email@gmail.com
+spring.mail.password=your-app-password
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+```
+
+For local testing without real SMTP, you can run MailHog (or similar) and point the app at it:
+
+```
+# run MailHog locally (separate terminal)
+# download MailHog and run the binary, or use Docker: docker run -p 1025:1025 -p 8025:8025 mailhog/mailhog
+
+spring.mail.host=localhost
+spring.mail.port=1025
+```
+
+Restart the backend after changing properties. Create an alert via the UI or POST `/api/alerts` with `notify.to` set to comma-separated emails; when the alert fires the app will send email(s).
+
 ## Test it
 ```bash
 # Ingest a log

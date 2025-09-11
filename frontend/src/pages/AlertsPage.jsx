@@ -16,13 +16,20 @@ export default function AlertsPage(){
     const searchReq = { from: form.queryFrom ?? 'now-5m', to: form.queryTo ?? 'now', query: form.query || '', size: form.querySize || 100 };
     // Threshold uses operator and value
     const threshold = { operator: '>=', value: count };
-    // Notify: if user supplied a URL (starts with http) use webhook, otherwise use log notifier
+    // Notify: if input is a URL use webhook, if it contains emails use mail, otherwise default to log notifier
     let notifyObj = { type: 'log' };
     if (Array.isArray(form.notify) && form.notify.length>0){
       const first = (form.notify[0]||'').trim();
-      if (first.startsWith('http')) notifyObj = { type: 'webhook', url: first };
-    } else if (typeof form.notify === 'string' && form.notify.trim().startsWith('http')){
-      notifyObj = { type: 'webhook', url: form.notify.trim() };
+      if (first.startsWith('http')) {
+        notifyObj = { type: 'webhook', url: first };
+      } else if (form.notify.some(s => String(s).includes('@'))){
+        const emails = form.notify.map(s=>String(s).trim()).filter(s=>s);
+        notifyObj = { type: 'mail', to: emails.join(',') };
+      }
+    } else if (typeof form.notify === 'string' && form.notify.trim()){
+      const v = form.notify.trim();
+      if (v.startsWith('http')) notifyObj = { type: 'webhook', url: v };
+      else if (v.includes('@')) notifyObj = { type: 'mail', to: v };
     }
 
     const payload = { name: form.name, query: searchReq, threshold, notify: notifyObj };
